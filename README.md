@@ -1,11 +1,2 @@
-Write a program that prints the Latin alphabet in lowercase in reverse order (from 'z' to 'a') on a single line.
-
-A line is a sequence of characters preceding the end of line character ('\n').
-
-Please note that casting is not allowed for this exercise!
-
-Usage
-$ go run .
-zyxwvutsrqponmlkjihgfedcba
-$
-in this test we use z01 import instead of fmt , and print each character of the alphabet as a rune rather than a string
+This is a Test program to help you master golang , each test should be completed within 24 hours the quiz are  on each folder and a solution, each test  has an exam to test what you have learnt on each test level.the exam should be done last and in order from 1..., avoid checking exam solution or referencing test your raw brain and what you have learnt , you are only allowed a pen a paper and a platform to test your code. you can ask someone o supervise you , if stuck  dont skip to next problem , wait till the exam time is up(2 hours)or you can terminate the exam anytime .then research each exam quiz and understand each problem , The exam will gradually get harder as you progress both on each test level and on exam numbers, the first two quiz are always the easiest to solve , the rest are to test your ability to handle unknown problems and logics ,they may test everything you have learned previously or will learn in the future .
+in these test problems we use the z01.PrintRune to print outputs and not fmt , limit yourself from using external packages, we create our own test packages unless stated otherwise.
