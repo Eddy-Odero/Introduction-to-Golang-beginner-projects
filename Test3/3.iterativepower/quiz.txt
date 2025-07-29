@@ -1,0 +1,2 @@
+write an iterative function that return the value of nb to the power of power .
+Negative power will return  0. overflow do not have to be dealt with
