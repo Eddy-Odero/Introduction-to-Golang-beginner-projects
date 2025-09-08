@@ -47,5 +47,5 @@ func QuadB(x, y int) {
 }
 
 func main() {
-    QuadB(1, 5)
+    QuadB(5, 5)
 }
