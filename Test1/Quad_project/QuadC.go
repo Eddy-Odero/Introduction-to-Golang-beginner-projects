@@ -10,7 +10,7 @@ func QuadC(x, y int){
 		if i == 1 {
 			zone.PrintRune('A')
 		} else if i == x {
-			zone.PrintRune('C')
+			zone.PrintRune('A')
 		} else {
 			zone.PrintRune('B')
 		}
@@ -32,7 +32,7 @@ func QuadC(x, y int){
 	if y > 1 {
 		for i := 1; i <= x; i++ {
 			if i == 1 {
-				zone.PrintRune('A')
+				zone.PrintRune('C')
 			}else if i == x {
 				zone.PrintRune('C')
 			} else {
@@ -43,5 +43,5 @@ func QuadC(x, y int){
 	}
 }
 	func main() {
-	QuadC(5,3)
+	QuadC(5,1)
 	}
