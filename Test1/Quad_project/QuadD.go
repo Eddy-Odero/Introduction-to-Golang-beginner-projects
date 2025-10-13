@@ -27,6 +27,19 @@ for row := 1; row <= y-2;row++{
 	}
 	zone.PrintRune('\n')
 }
+//bottom row
+if y > 1{
+for i := 1; i <= x; i++ {
+			if i == 1 {
+				zone.PrintRune('A')
+			}else if i == x {
+				zone.PrintRune('C')
+			} else {
+				zone.PrintRune('B')
+			}
+		}
+		zone.PrintRune('\n')
+	}
 }
 func main(){
 	QuadD(5,3)
