@@ -46,6 +46,3 @@ func QuadB(x, y int) {
     }
 }
 
-func main() {
-    QuadB(5, 5)
-}
