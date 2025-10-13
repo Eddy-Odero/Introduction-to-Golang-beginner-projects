@@ -42,6 +42,4 @@ func QuadC(x, y int){
 		zone.PrintRune('\n')
 	}
 }
-	func main() {
-	QuadC(5,1)
-	}
+	
