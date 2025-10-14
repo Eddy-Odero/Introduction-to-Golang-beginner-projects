@@ -41,6 +41,3 @@ for i := 1; i <= x; i++ {
 		zone.PrintRune('\n')
 	}
 }
-func main(){
-	QuadD(5,3)
-}
