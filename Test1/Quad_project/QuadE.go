@@ -5,6 +5,7 @@ func QuadE(x,y int){
 	if x == 0 || y == 0 {
 		return 
 	}
+	//top
 	for i := 1; i <= x; i ++{
 		if i == 1{
 			zone.PrintRune('A')
@@ -13,8 +14,21 @@ func QuadE(x,y int){
 		}else{
 			zone.PrintRune('B')
 		}
+		zone.PrintRune('\n')
 	}
+	//middle
+	for row:= 1; row <= y-2; row++{
+		for col := 1;col <= x;col++{
+			if col == 1 || col == x{
+				zone.PrintRune('B')
+			}else{
+				zone.PrintRune(' ')
+			}
+		}
+		zone.PrintRune('\n')
+	}
+	// bottom
 }
 func main(){
-	QuadE(5,1)
+	QuadE(5,3)
 }
