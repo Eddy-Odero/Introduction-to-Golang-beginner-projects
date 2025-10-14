@@ -31,7 +31,7 @@ func QuadE(x,y int){
 	// bottom
 	if y > 1 {
 		 for i := 1; i <= x;i++ {
-			if i == 1{
+			if i == 1 {
 				zone.PrintRune('C')
 			}else if i == x{
 				zone.PrintRune('A')
