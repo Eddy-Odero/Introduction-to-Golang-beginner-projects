@@ -28,6 +28,14 @@ func QuadE(x,y int){
 		zone.PrintRune('\n')
 	}
 	// bottom
+	if y > 1 {
+		 for i := 1; i <= x;i++ {
+			if i == 1{
+				zone.PrintRune('C')
+			}
+		}
+	}
+	
 }
 func main(){
 	QuadE(5,3)
