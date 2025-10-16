@@ -9,7 +9,7 @@ if nb == 0 || nb == 1 {
 	return nb
 }
 
-for i:= 1;i*i<= nb;i++{
+for i:= 1;i*i <= nb;i++ {
 if i*i == nb {
 	return i
 }
@@ -17,5 +17,5 @@ if i*i == nb {
 return 0
 }
 func main(){
-	fmt.Println(Sqrt(24))
+	fmt.Println(Sqrt(4))
 }
