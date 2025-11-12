@@ -3,8 +3,11 @@ package main
 import "github.com/01-edu/z01"
 
 func NRune(s string, n int) rune {
+	if len(s) < n || len(s) <= 0 || n <= 0 {
+		return 0
+	}
 	m := []rune(s)
-	return m[n]
+	return m[n-1]
 }
 func main() {
 	z01.PrintRune(NRune("Hello!", 3))
