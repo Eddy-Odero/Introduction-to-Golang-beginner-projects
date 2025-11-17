@@ -1,16 +1,23 @@
-package main
-
-import "fmt"
-
-func Index(s string, toFind string) int {
-	count := 0
-	for _, i := range s {
-		if i >= 'a' && i <= 'z' || i >= 'A' && i <= 'Z' {
-			count++
-		}
-
+ package main
+ import "fmt"
+ func Index(s string, toFind string) int {
+	if len(toFind) == 0 {
+		return 0
 	}
-	return count
+
+	for i := 0; i <= len(s)-len(toFind); i++ {
+		match := true
+		for j := 0; j < len(toFind); j++ {
+			if s[i+j] != toFind[j] {
+				match = false
+				break
+			}
+		}
+		if match {
+			return i
+		}
+	}
+	return -1
 }
 func main() {
 	fmt.Println(Index("Hello!", "l"))
