@@ -4,7 +4,7 @@ import "fmt"
 
 func IsPrintable(s string) bool {
 	for _, i := range s {
-		if i >= 'a' && i <= 'z' || i >= 'A' && i <= 'Z' || i >= '0' && i <= '9' {
+		if i >= 32 && i <= 126{
 
 		} else {
 			return false
