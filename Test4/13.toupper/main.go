@@ -8,7 +8,7 @@ func ToUpper(s string) string {
 		if i >= 97 && i <= 122 {
 			result += string(i - 32)
 		} else {
-			return string(i)
+			result+= string(i)
 		}
 
 	}
