@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 func CheckNumber(arg string) bool {
 	for _, i := range arg {
 		if i >= 'a' && i <= 'z' || i >= 'A' && i <= 'Z' {
