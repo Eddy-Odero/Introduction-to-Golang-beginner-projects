@@ -8,14 +8,17 @@ import (
 func isSpace(r rune) bool {
 	return r == ' ' || r == '\t'
 }
-func cleanSpaces(s string)string{
+func cleanSpaces(s string) string {
 	var result []rune
 	inword := false
-	for _, r := range s{
-		if !isSpace (r){
+
+	for _, r := range s {
+		if !isSpace (r) {
+
 			if !inword && len(result) > 0 {
 				result = append(result, ' ')
 			}
+			
 			result = append(result, r)
 			inword = true
 		}else{
