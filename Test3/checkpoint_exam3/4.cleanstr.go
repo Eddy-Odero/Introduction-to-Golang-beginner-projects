@@ -33,5 +33,5 @@ func main() {
 
 	input := os.Args[1]
 	cleaned := cleanSpaces(input)
-	fmt.Print(cleaned)
+	fmt.Println(cleaned)
 }
