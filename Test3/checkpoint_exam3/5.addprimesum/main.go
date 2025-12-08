@@ -10,7 +10,7 @@ import (
 func atoi(s string) (int,bool){
 	runes := []rune(s)
 	if len(runes) == 0 {
-return 0, false
+    return 0, false
 	}
 result := 0
 for _, r := range runes{
@@ -19,12 +19,15 @@ for _, r := range runes{
 	}
 	result = result*10 +int(r-'0')
 }
-return result,true
+   return result,true
 }
 func isPrime(n int)bool{
+	if n < 2 {
+		return false
+	}
 	for i := 2 ; i*i <= n ; i++{
-		if i%2== 0{
-			return false
+		if n%i== 0{
+		return false
 		}
 	}
 	return true
@@ -41,8 +44,8 @@ return
 	}
 	sum := 0
 	for i:= 2 ; i <= n;i++{
-		if isPrime(i){
-sum +=i
+		if isPrime(i) {
+           sum +=i
 		}
 		
 	}
