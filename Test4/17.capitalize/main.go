@@ -1,5 +1,5 @@
 package main
-
+import "fmt"
 func toUpper(r rune)rune{
 	if r >= 'a' && r <= 'z' {
 		return r-32
@@ -38,5 +38,5 @@ return string(runes)
 }
 
 func main(){
-
+fmt.Println(Capitalize("Hello! How are you? How+are+things+4you?"))
 }
