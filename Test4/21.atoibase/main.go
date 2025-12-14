@@ -12,7 +12,18 @@ baseLen := len(base)
 result := 0
 for  _, r := range s {
 	index := -1
+	for i,b := range base {
+		if r == b {
+			index= i
+			break
+		}
+	}
+	if index == -1{
+		return 0
+	}
+	result = result*baseLen + index
 }
+return result * sign
 }
 func main(){
 
