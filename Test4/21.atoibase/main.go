@@ -1,6 +1,26 @@
 package main
+import "fmt"
+
+func isValidBase(base string) bool{
+	if len(base) < 2 {
+		return false
+	}
+	for i := 0;i < len(base);i++{
+		if base[i] == '+' || base[i]=='-'{
+			return false
+		}
+		for j := i + 1;j < len(base);j++{
+			if base[i] == base[j] {
+				return false
+			}
+		}
+	}
+	return true
+}
+
+
 func AtoiBase(s string, base string) int {
-if !isvalidBase(base){
+if !isValidBase(base){
 	return 0
 }
 sign := 1
@@ -18,7 +38,7 @@ for  _, r := range s {
 			break
 		}
 	}
-	if index == -1{
+	if index == -1 {
 		return 0
 	}
 	result = result*baseLen + index
@@ -26,5 +46,9 @@ for  _, r := range s {
 return result * sign
 }
 func main(){
-
+fmt.Println(AtoiBase("125", "0123456789"))
+	fmt.Println(AtoiBase("1111101", "01"))
+	fmt.Println(AtoiBase("7D", "0123456789ABCDEF"))
+	fmt.Println(AtoiBase("uoi", "choumi"))
+	fmt.Println(AtoiBase("bbbbbab", "-ab"))
 }
