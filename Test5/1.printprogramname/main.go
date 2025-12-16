@@ -7,9 +7,14 @@ import (
 )
 
 func main() {
-	args := os.Args[0]
-	for _, i := range args {
-		z01.PrintRune(i)
+	arg := os.Args[0]
+
+	if len(arg) >= 2 && arg[0] == '.' && arg[1] == '/' {
+		arg = arg[2:]
 	}
 
+	for _, r := range arg {
+		z01.PrintRune(r)
+	}
+	z01.PrintRune('\n')
 }
