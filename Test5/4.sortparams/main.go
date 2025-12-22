@@ -1,0 +1,28 @@
+package main
+
+import (
+	"os"
+
+	"github.com/01-edu/z01"
+)
+
+func sortparam(s []string) {
+	for i := 0; i < len(s); i++ {
+		for j := i + 1; j < len(s); j++ {
+			if s[i] > s[j] {
+				s[i], s[j] = s[j], s[i]
+			}
+		}
+	}
+}
+func main() {
+	args := os.Args[1:]
+	sortparam(args)
+	for _, a := range args {
+		for _, b := range a {
+			z01.PrintRune(b)
+		}
+		z01.PrintRune('\n')
+	}
+	
+}
