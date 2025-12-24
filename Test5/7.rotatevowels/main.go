@@ -7,8 +7,7 @@ import (
 )
 
 func isVowel(r rune) bool {
-	vowels := "aeiouAEIOU"
-	for _, v := range vowels {
+	for _, v := range "aeiouAEIOU" {
 		if r == v {
 			return true
 		}
@@ -16,26 +15,23 @@ func isVowel(r rune) bool {
 	return false
 }
 
-func mirrorVowels(s string) string {
+func rotateVowels(s string) string {
 	r := []rune(s)
+	var v []rune
 
-	var vowels []rune
-	for _, ch := range r {
-		if isVowel(ch) {
-			vowels = append(vowels, ch)
+	for _, c := range r {
+		if isVowel(c) {
+			v = append(v, c)
 		}
 	}
-	if len(vowels) == 0 {
-		return s
-	}
-	j := len(vowels) - 1
-	for i := 0; i < len(r); i++ {
+
+	j := len(v) - 1
+	for i := range r {
 		if isVowel(r[i]) {
-			r[i] = vowels[j]
+			r[i] = v[j]
 			j--
 		}
 	}
-
 	return string(r)
 }
 
@@ -46,11 +42,9 @@ func main() {
 		return
 	}
 
-	for i, arg := range args {
-		result := mirrorVowels(arg)
-
-		for _, ch := range result {
-			z01.PrintRune(ch)
+	for i, a := range args {
+		for _, c := range rotateVowels(a) {
+			z01.PrintRune(c)
 		}
 		if i < len(args)-1 {
 			z01.PrintRune(' ')
