@@ -1,5 +1,6 @@
 package main
 import "fmt"
+
 func Split(s, sep string) []string {
 	var result []string
 	start := 0
