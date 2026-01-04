@@ -31,10 +31,12 @@ func fromBase10(n int, base string) string {
 	}
 	return result
 }
+
 func ConvertBase(nbr, baseFrom, baseTo string) string {
 	value := toBase10(nbr, baseFrom)
 	return fromBase10(value, baseTo)
 }
+
 func main() {
 	result := ConvertBase("101011", "01", "0123456789")
 	fmt.Println(result)
