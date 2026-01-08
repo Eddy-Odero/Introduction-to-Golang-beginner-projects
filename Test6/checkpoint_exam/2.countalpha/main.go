@@ -1,6 +1,7 @@
 package main
 import "fmt"
 func CountAlpha(s string) int {
+	
 	count := 0
 	for _, i := range s {
 		if i >= 'A' && i <= 'Z' || i >= 'a' && i <= 'z' {
