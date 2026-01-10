@@ -2,8 +2,6 @@ package main
 
 import (
     "fmt"
-
-   // "piscine"
 )
 func FirstWord(s string) string {
   
