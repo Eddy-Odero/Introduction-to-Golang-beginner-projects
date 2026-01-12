@@ -3,8 +3,24 @@ package main
 import (
 	"fmt"
 	"os"
-	"strings"
 )
+
+func splitArrayContent(s string) []string {
+	var result []string
+	current := ""
+
+	for i := 0; i < len(s); i++ {
+		if s[i] == ',' {
+			result = append(result, current)
+			current = ""
+		} else if s[i] != ' ' {
+			current += string(s[i])
+		}
+	}
+
+	result = append(result, current)
+	return result
+}
 
 func atoiStrict(s string) (int, bool) {
 	if len(s) == 0 {
@@ -37,28 +53,22 @@ func atoiStrict(s string) (int, bool) {
 }
 
 func main() {
-	// LEVEL 1: Argument validation
 	if len(os.Args) != 3 {
 		fmt.Println("Invalid input.")
 		return
 	}
 
-	// LEVEL 2: Array format validation
 	arrStr := os.Args[1]
 	if len(arrStr) < 2 || arrStr[0] != '[' || arrStr[len(arrStr)-1] != ']' {
 		fmt.Println("Invalid input.")
 		return
 	}
 
-	// LEVEL 3: Split array content
 	content := arrStr[1 : len(arrStr)-1]
-	elements := strings.Split(content, ",")
+	elements := splitArrayContent(content)
 
-	// LEVEL 4–5: Parse numbers
 	var numbers []int
 	for _, el := range elements {
-		el = strings.TrimSpace(el)
-
 		num, ok := atoiStrict(el)
 		if !ok {
 			fmt.Printf("Invalid number: %s\n", el)
@@ -67,14 +77,12 @@ func main() {
 		numbers = append(numbers, num)
 	}
 
-	// LEVEL 6: Parse target
 	target, ok := atoiStrict(os.Args[2])
 	if !ok {
 		fmt.Println("Invalid target sum.")
 		return
 	}
 
-	// LEVEL 7: Find pairs
 	pairs := [][]int{}
 	for i := 0; i < len(numbers); i++ {
 		for j := i + 1; j < len(numbers); j++ {
@@ -84,7 +92,6 @@ func main() {
 		}
 	}
 
-	// LEVEL 8: Output
 	if len(pairs) == 0 {
 		fmt.Println("No pairs found.")
 		return
