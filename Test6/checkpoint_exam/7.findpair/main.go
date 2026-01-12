@@ -5,7 +5,7 @@ import (
 	"os"
 )
 
-func splitArrayContent(s string) []string {
+func splitString(s string) []string {
 	var result []string
 	current := ""
 
@@ -22,7 +22,7 @@ func splitArrayContent(s string) []string {
 	return result
 }
 
-func atoiStrict(s string) (int, bool) {
+func Atoi(s string) (int, bool) {
 	if len(s) == 0 {
 		return 0, false
 	}
@@ -65,11 +65,11 @@ func main() {
 	}
 
 	content := arrStr[1 : len(arrStr)-1]
-	elements := splitArrayContent(content)
+	elements := splitString(content)
 
 	var numbers []int
 	for _, el := range elements {
-		num, ok := atoiStrict(el)
+		num, ok := Atoi(el)
 		if !ok {
 			fmt.Printf("Invalid number: %s\n", el)
 			return
@@ -77,7 +77,7 @@ func main() {
 		numbers = append(numbers, num)
 	}
 
-	target, ok := atoiStrict(os.Args[2])
+	target, ok := Atoi(os.Args[2])
 	if !ok {
 		fmt.Println("Invalid target sum.")
 		return
