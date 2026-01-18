@@ -8,22 +8,22 @@ import (
 func main() {
 	args := os.Args[1:]
 	if len(args) == 0 {
-		data, e := io.ReadAll(os.Stdin)
-		check(e)
+		data, err := io.ReadAll(os.Stdin)
+		check(err)
 		os.Stdout.Write(data)
 		return
 	}
 	for _, filename := range args {
-		data, e := os.ReadFile(filename)
-		check(e)
+		data, err := os.ReadFile(filename)
+		check(err)
 		os.Stdout.Write(data)
 	}
 }
 
-func check(e error) {
-	if e != nil {
+func check(err error) {
+	if err != nil {
 		os.Stdout.WriteString("ERROR: ")
-		os.Stdout.WriteString(e.Error())
+		os.Stdout.WriteString(err.Error())
 		os.Stdout.WriteString("\n")
 		os.Exit(1)
 	}
