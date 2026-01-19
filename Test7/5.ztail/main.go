@@ -3,11 +3,12 @@ package main
 import (
 	"fmt"
 	"os"
+	"io"
 )
 
 func main() {
 	args := os.Args[1:]
-	if len(args) < 3 {
+	if len(args) < 2 {
 		fmt.Println("Usage: go run . -c <numBytes> <file1> [<file2> ...]")
 		os.Exit(1)
 	}
@@ -51,9 +52,10 @@ func ztail(fileName string, numBytes int) error {
 	}
 	buffer := make([]byte, numBytes)
 	_, err = file.ReadAt(buffer, fileSize-int64(numBytes))
-	if err != nil {
-		return fmt.Errorf("Error reading file %s: %v", fileName, err)
-	}
+if err != nil && err != io.EOF {
+	return fmt.Errorf("Error reading file %s: %v", fileName, err)
+}
+
 	fmt.Print(string(buffer))
 	return nil
 }
