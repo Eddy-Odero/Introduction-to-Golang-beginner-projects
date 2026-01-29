@@ -1,0 +1,241 @@
+.Write a program that is called doop.
+
+The program has to be used with three arguments:
+
+A value
+
+An operator, one of : +, -, /, *, %
+
+Another value
+
+In case of an invalid operator, value, number of arguments or an overflow, the programs prints nothing.
+
+The program has to handle the modulo and division operations by 0 as shown on the output examples below.
+
+Usage
+$ go run .
+$ go run . 1 + 1 | cat -e
+2
+$
+$ go run . hello + 1
+$ go run . 1 p 1
+$ go run . 1 / 0 | cat -e
+No division by 0
+$
+$ go run . 1 % 0 | cat -e
+No modulo by 0
+$
+$ go run . 9223372036854775807 + 1
+$ go run . -9223372036854775809 - 3
+$ go run . 9223372036854775807 "*" 3
+$ go run . 1 "*" 1
+1
+$ go run . 1 "*" -1
+-1
+$
+
+// go back to bitwise, iota and bitshift revisit over flow and try impelenting a math.max or min function this will help
+
+📘 Go Notes — Bitwise, Bit Shifts, and iota
+1️⃣ Binary (30-second reminder)
+
+Computers store numbers in binary (base-2):
+
+Decimal:  0  1  2  3  4  5
+Binary:   0  1 10 11 100 101
+
+
+Each position is a power of 2.
+
+You almost never need to think in binary — just know it exists.
+
+2️⃣ Bitwise operations (what they are)
+
+Bitwise ops work bit by bit on integers.
+
+Operator	Name	Meaning
+&	AND	both bits must be 1
+`	`	OR
+^	XOR	bits differ
+&^	AND NOT	clear bits
+~	NOT	flip bits (rare in Go)
+Example
+5  = 0101
+3  = 0011
+----------
+5 & 3 = 0001 = 1
+5 | 3 = 0111 = 7
+5 ^ 3 = 0110 = 6
+
+When do you actually use these?
+
+flags
+
+permissions
+
+masks
+
+low-level systems work
+
+❗ Not needed for normal Go apps
+
+3️⃣ Bit shift operators (<< and >>)
+Left shift <<
+1 << 3  // 8
+
+
+Meaning:
+
+Shift bits left by 3 → multiply by 2³
+
+Rule to remember (this is enough):
+x << n  ==  x × 2ⁿ
+
+
+Examples:
+
+1 << 1 = 2
+1 << 2 = 4
+1 << 10 = 1024
+
+Right shift >>
+8 >> 3  // 1
+
+
+Meaning:
+
+Shift bits right → divide by 2ⁿ (integer division)
+
+16 >> 1 = 8
+16 >> 2 = 4
+
+4️⃣ Why 1 << 63 shows up in Go
+
+Because Go uses two’s complement integers.
+
+int64 range:
+-2⁶³  …  2⁶³ - 1
+
+
+So:
+
+1 << 63        // 2⁶³
+(1 << 63) - 1 // max int64
+-(1 << 63)    // min int64
+
+
+This is why you saw:
+
+if n > (1<<63)-1 || n < -(1<<63)
+
+
+It’s not clever — it’s just defining numeric limits.
+
+5️⃣ Overflow (why shifts matter)
+
+Overflow happens when a value exceeds the type’s limits.
+
+var x int64 = 9223372036854775807
+x = x + 1   // overflow (wraps)
+
+
+Go does not panic on overflow.
+
+So we check before or after operations.
+
+Bit shifts help define the boundaries safely.
+
+6️⃣ iota (what it actually is)
+
+iota is for auto-incrementing constants.
+
+That’s it.
+
+const (
+	A = iota // 0
+	B        // 1
+	C        // 2
+)
+
+Common real use: enums
+type State int
+
+const (
+	Idle State = iota
+	Running
+	Stopped
+)
+
+iota + bit shifts (flags)
+const (
+	Read  = 1 << iota // 1
+	Write             // 2
+	Exec              // 4
+)
+
+
+Now you can combine flags:
+
+perm := Read | Write
+
+
+This is one of the few places bitwise ops shine.
+
+7️⃣ iota is NOT used in your challenge
+
+Important:
+
+No constants enum
+
+No flags
+
+No repeated values
+
+So if you felt confused — that’s normal.
+It doesn’t belong here.
+
+8️⃣ What you should remember (and forget)
+Remember these 6 things
+
+✔ 1 << n means 2ⁿ
+✔ int64 range is [-2⁶³, 2⁶³ - 1]
+✔ Overflow is silent in Go
+✔ Bit shifts define limits safely
+✔ iota is for constants
+✔ Bitwise ops are niche, not everyday tools
+
+Forget everything else until needed
+
+You don’t need:
+
+binary arithmetic
+
+manual bit masking
+
+clever tricks
+
+9️⃣ Mental model (use this forever)
+
+Bitwise operations are precision tools, not daily utensils.
+
+Use them when:
+
+the problem demands limits
+
+flags
+
+systems behavior
+
+Ignore them otherwise.
+
+If you want next, I can:
+
+turn this into a one-page cheat sheet
+
+give you 3 tiny exercises (10 mins total)
+
+show how Go’s math package replaces most of this
+
+explain overflow without any bitwise math
+
+Just tell me 👍

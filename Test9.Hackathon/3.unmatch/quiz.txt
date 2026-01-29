@@ -1,0 +1,172 @@
+Write a function, Unmatch, that returns the element of the slice that does not have a correspondent pair.
+
+If all the number have a correspondent pair, it should return -1.
+
+Expected function
+func Unmatch(a []int) int {
+
+}
+Usage
+Here is a possible program to test your function :
+
+package main
+
+import (
+	"fmt"
+	"piscine"
+)
+
+func main() {
+	a := []int{1, 2, 3, 1, 2, 3, 4}
+	unmatch := piscine.Unmatch(a)
+	fmt.Println(unmatch)
+}
+And its output :
+
+$ go run .
+4
+$
+
+// notes
+1️⃣ What XOR (^) ACTUALLY does
+
+XOR compares bits:
+
+Bit A	Bit B	A ^ B
+0	0	0
+0	1	1
+1	0	1
+1	1	0
+
+👉 Same → 0
+👉 Different → 1
+
+That’s it.
+
+2️⃣ Three rules (burn these into your brain)
+
+XOR has three killer properties:
+
+Rule 1
+x ^ x = 0
+
+
+A value XORed with itself disappears.
+
+Rule 2
+x ^ 0 = x
+
+
+Zero does nothing.
+
+Rule 3
+Order doesn’t matter
+
+a ^ b ^ a = b
+
+
+This is HUGE.
+
+3️⃣ Walk through YOUR example (slow motion)
+
+Input:
+
+[]int{1, 2, 3, 1, 2, 3, 4}
+
+
+Binary (simplified):
+
+1 = 001
+2 = 010
+3 = 011
+4 = 100
+
+
+Now step through the loop:
+
+Start
+result = 0
+
+First value: 1
+result = 0 ^ 1 = 1
+
+Next: 2
+result = 1 ^ 2 = 3
+
+Next: 3
+result = 3 ^ 3 = 0   ← they cancel!
+
+Next: 1
+result = 0 ^ 1 = 1
+
+Next: 2
+result = 1 ^ 2 = 3
+
+Next: 3
+result = 3 ^ 3 = 0   ← cancel again
+
+Last: 4
+result = 0 ^ 4 = 4
+
+🎯 Final result
+4
+
+
+Every number that appeared twice canceled itself out.
+
+Only the one that appeared once survived.
+
+4️⃣ Why the loop magically works
+
+This line:
+
+result ^= v
+
+
+means:
+
+result = result ^ v
+
+
+So result keeps “absorbing” numbers.
+
+Pairs vanish.
+The odd one remains.
+
+5️⃣ Why this works ONLY for this problem
+
+XOR works only if:
+
+Every number appears exactly twice
+
+Except one
+
+If a number appears 3 times → ❌ broken
+If two numbers appear once → ❌ broken
+
+This is not a counting replacement.
+It’s a pair-cancellation trick.
+
+6️⃣ Visual intuition (non-binary)
+
+Think of XOR like toggling a switch:
+
+First time → ON
+
+Second time → OFF
+
+Third time → ON
+
+Even count → OFF
+Odd count → ON
+
+The final “ON” value is your answer.
+
+7️⃣ One-line memory trick
+
+XOR removes pairs.
+What’s left didn’t have a pair.
+
+That’s it.
+
+
