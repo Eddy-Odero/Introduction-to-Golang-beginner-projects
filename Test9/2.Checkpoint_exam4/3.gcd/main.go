@@ -5,11 +5,10 @@ import (
 	
 )
 func Gcd(a, b uint) uint {
-a= a%b
-if b% 2 == 0{
-
+for b != 0{
+a,b = b,a%b
 }
-return b
+return a
 }
 func main() {
 	fmt.Println(Gcd(42, 10))
