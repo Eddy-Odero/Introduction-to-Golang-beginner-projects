@@ -20,6 +20,7 @@ if l.Head == nil{
 n.Next = l.Head
 l.Head = n
 }
+
 func ListSize(l *List) int {
 count := 0
 n := l.Head
