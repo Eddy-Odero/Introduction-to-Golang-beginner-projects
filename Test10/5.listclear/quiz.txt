@@ -43,3 +43,11 @@ func main() {
 	fmt.Println("------updated list------")
 	PrintList(link)
 }
+And its output :
+
+$ go run .
+------list------
+I -> 1 -> something -> 2 -> <nil>
+------updated list------
+<nil>
+$
