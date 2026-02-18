@@ -25,22 +25,21 @@ func ListPushBack(l *List, data interface{}) {
 	l.Tail = n
 }
 func ListReverse(l *List) {
-	if l.Head == nil {
+	if l == nil || l.Head == nil {
 		return
 	}
+
+	
 	var prev *NodeL
-	curr := l.Head
 
-	l.Tail = l.Head
-
-	for curr != nil {
-		next := curr.Next
-		curr.Next = prev
-		prev = curr
-		curr = next
+	for l.Head != nil {
+		l.Head.Next, prev, l.Head = prev, l.Head, l.Head.Next
 	}
+
 	l.Head = prev
+	l.Tail = l.Head
 }
+
 func main() {
 	link := &List{}
 
