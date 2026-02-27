@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	
 )
 type TreeNode struct {
 	Left, Right, Parent *TreeNode
@@ -9,6 +10,7 @@ type TreeNode struct {
 }
 
 func BTreeInsertData(root *TreeNode, data string) *TreeNode {
+
 if root == nil {
 	return &TreeNode{Data:data}
 }
@@ -23,15 +25,19 @@ if data < root.Data{
 }
 return root
 }
-
+func BTreeApplyInorder(root *TreeNode, f func(...interface{}) (int, error)) {
+if root == nil {
+	return 
+}
+BTreeApplyInorder(root.Left,f)
+f(root.Data)
+BTreeApplyInorder(root.Right,f)
+}
 func main() {
 	root := &TreeNode{Data: "4"}
 	BTreeInsertData(root, "1")
 	BTreeInsertData(root, "7")
 	BTreeInsertData(root, "5")
-	fmt.Println(root.Left.Data)
-	fmt.Println(root.Data)
-	fmt.Println(root.Right.Left.Data)
-	fmt.Println(root.Right.Data)
+	BTreeApplyInorder(root, fmt.Println)
 
 }
