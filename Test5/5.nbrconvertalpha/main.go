@@ -6,52 +6,42 @@ import (
 	"github.com/01-edu/z01"
 )
 
-func Atoi(s string) int {
-	if s == " " {
-		return 0
-	}
-	result := 0
-	sign := 1
-	i := 0
-
-	if s[0] == '-' {
-		sign = -1
-		i++
-	} else if s[0] == '+' {
-		i++
-	}
-
-	for j := i; j < len(s); j++ {
-		if s[j] < '0' || s[j] > '9' {
-			return 0
-
-		}
-		result = result*10 + int(s[j]-'0')
-	}
-
-	return result * sign
-}
 func main() {
-	upper := false
 	args := os.Args[1:]
-	if len(args) > 0 && args[0] == "--upper" {
-		upper = true
+	if len(args) == 0 {
+		return
+	}
+
+	isUpper := false
+	if args[0] == "--upper" {
+		isUpper = true
 		args = args[1:]
 	}
+
 	for _, arg := range args {
-		n := Atoi(arg)
-		if n < 1 || n > 26 {
-			z01.PrintRune(' ')
-			continue
+		n := 0
+		isValid := true
+		if len(arg) == 0 {
+			isValid = false
 		}
-		var letter rune
-		if upper {
-			letter = rune('A' + n - 1)
+		for i := 0; i < len(arg); i++ {
+			if arg[i] < '0' || arg[i] > '9' {
+				isValid = false
+				break
+			}
+			n = n*10 + int(arg[i]-'0')
+		}
+		if isValid && n >= 1 && n <= 26 {
+			var r rune
+			if isUpper {
+				r = rune('A' + n - 1)
+			} else {
+				r = rune('a' + n - 1)
+			}
+			z01.PrintRune(r)
 		} else {
-			letter = rune('a' + n - 1)
+			z01.PrintRune(' ')
 		}
-		z01.PrintRune(letter)
 	}
 	z01.PrintRune('\n')
-
 }
