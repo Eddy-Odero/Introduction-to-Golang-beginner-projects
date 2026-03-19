@@ -1,5 +1,9 @@
- package main
-import zone "github.com/01-edu/z01"
+package main
+
+import (
+	"github.com/01-edu/z01"
+	zone "github.com/01-edu/z01"
+)
 func QuadD(x, y int){
 if x <= 0 || y <= 0 {
 	return
@@ -7,11 +11,11 @@ if x <= 0 || y <= 0 {
 // Top row 
 for i:= 1 ;i <= x;i++{
 	if i == 1{
-		zone.PrintRune('A')
+		z01.PrintRune('A')
 	}else if i == x {
-		zone.PrintRune('C')
+		z01.PrintRune('C')
 	}else{
-		zone.PrintRune('B')
+		z01.PrintRune('B')
 	}
 }
 zone.PrintRune('\n')
@@ -25,7 +29,7 @@ for row := 1; row <= y-2;row++{
 			zone.PrintRune(' ')
 		}
 	}
-	zone.PrintRune('\n')
+	z01.PrintRune('\n')
 }
 //bottom row
 if y > 1{
@@ -38,6 +42,6 @@ for i := 1; i <= x; i++ {
 				zone.PrintRune('B')
 			}
 		}
-		zone.PrintRune('\n')
+		z01.PrintRune('\n')
 	}
 }

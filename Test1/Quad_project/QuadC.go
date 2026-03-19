@@ -1,5 +1,9 @@
- package main
-import zone "github.com/01-edu/z01"
+package main
+
+import (
+	"github.com/01-edu/z01"
+	zone "github.com/01-edu/z01"
+)
 
 func QuadC(x, y int){
 	if x <= 0 || y <= 0 {
@@ -8,14 +12,14 @@ func QuadC(x, y int){
 	// Top row
 	for i := 1; i <= x; i++ {
 		if i == 1 {
-			zone.PrintRune('A')
+			z01.PrintRune('A')
 		} else if i == x {
-			zone.PrintRune('A')
+			z01.PrintRune('A')
 		} else {
 			zone.PrintRune('B')
 		}
 	}
-	zone.PrintRune('\n')
+	z01.PrintRune('\n')
 
 	// Middle rows
 	for row := 1; row <= y-2; row++ {
@@ -26,7 +30,7 @@ func QuadC(x, y int){
 				zone.PrintRune(' ')
 			}
 		}
-		zone.PrintRune('\n')
+		z01.PrintRune('\n')
 	}
 	// Bottom row 
 	if y > 1 {
@@ -39,7 +43,7 @@ func QuadC(x, y int){
 				zone.PrintRune('B')
 			}
 		}
-		zone.PrintRune('\n')
+		z01.PrintRune('\n')
 	}
 }
 	

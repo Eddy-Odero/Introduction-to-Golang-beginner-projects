@@ -1,5 +1,9 @@
-package main 
-import zone "github.com/01-edu/z01"
+package main
+
+import (
+	"github.com/01-edu/z01"
+	
+)
 
 func QuadE(x,y int){
 	if x == 0 || y == 0 {
@@ -8,38 +12,38 @@ func QuadE(x,y int){
 	//top
 	for i := 1; i <= x; i ++{
 		if i == 1{
-			zone.PrintRune('A')
+			z01.PrintRune('A')
 		}else if i == x{
-			zone.PrintRune('C')
+			z01.PrintRune('C')
 		}else{
-			zone.PrintRune('B')
+			z01.PrintRune('B')
 		}
 		
 	}
-	zone.PrintRune('\n')
+	z01.PrintRune('\n')
 	//middle
 	for row:= 1; row <= y-2; row++{
 		for col := 1;col <= x;col++{
 			if col == 1 || col == x{
-				zone.PrintRune('B')
+				z01.PrintRune('B')
 			}else{
-				zone.PrintRune(' ')
+				z01.PrintRune(' ')
 			}
 		}
-		zone.PrintRune('\n')
+		z01.PrintRune('\n')
 	}
 	// bottom
 	if y > 1 {
 		 for i := 1; i <= x;i++ {
 			if i == 1 {
-				zone.PrintRune('C')
+				z01.PrintRune('C')
 			}else if i == x{
-				zone.PrintRune('A')
+				z01.PrintRune('A')
 			}else{
-				zone.PrintRune('B')
+				z01.PrintRune('B')
 			}
 		}
-		zone.PrintRune('\n')
+		z01.PrintRune('\n')
 	}
 	
 }
