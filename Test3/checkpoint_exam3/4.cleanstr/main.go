@@ -1,40 +1,32 @@
 package main
 
 import (
-	"fmt"
 	"os"
+
+	"github.com/01-edu/z01"
 )
-
-func isSpace(r rune) bool {
-	return r == ' ' || r == '\t'
-}
-func cleanSpaces(s string) string {
-	var result []rune
-	inword := false
-
-	for _, r := range s {
-		if !isSpace (r) {
-
-			if !inword && len(result) > 0 {
-				result = append(result, ' ')
-			}
-			
-			result = append(result, r)
-			inword = true
-		}else{
-			inword = false
-		}
-	}
-	return string(result)
-}
 
 func main() {
 	if len(os.Args) != 2 {
-		fmt.Println()
+	z01.PrintRune('\n')
 		return
 	}
 
-	input := os.Args[1]
-	cleaned := cleanSpaces(input)
-	fmt.Println(cleaned)
-}
+	s := os.Args[1]
+	inword := false
+	firstWord := true
+
+	for i := 0; i < len(s); i++ {
+		if s[i] != ' ' && s[i] != '\t' {
+				if !inword && !firstWord{
+					z01.PrintRune(' ')
+				}
+				z01.PrintRune(rune(s[i]))
+				firstWord = false
+				inword = true
+		} else {
+			inword = false
+		}
+	}
+	z01.PrintRune('\n')
+	}
