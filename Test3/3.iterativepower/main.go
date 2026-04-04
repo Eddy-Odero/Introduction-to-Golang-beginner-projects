@@ -1,14 +1,22 @@
 package main
  import "fmt"
- func Iterativepower(nb int, power int) int {
+
+func IterativePower(nb int, power int) int {
 	if power < 0 {
 		return 0
+	}
+	if power == 1 {
+		return nb
 	}
 	if power == 0 {
 		return 1
 	}
-	return nb *Iterativepower(nb,power-1)
- }
+	result := 1
+	for i := 0; i < power; i++ {
+		result *= nb
+	}
+	return result
+}
 func main(){
-fmt.Println(Iterativepower(4,3))
+fmt.Println(IterativePower(4,3))
 }
