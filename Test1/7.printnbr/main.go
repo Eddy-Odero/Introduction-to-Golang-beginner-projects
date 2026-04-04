@@ -2,7 +2,6 @@ package main
 
 import "github.com/01-edu/z01"
 
-//undestand that this problem want  us to implement itoa function
 func PrintNbr(n int) {
 	if n < 0 {
 		z01.PrintRune('-')

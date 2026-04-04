@@ -1,29 +1,32 @@
 package main
 
-import "os"
+import (
+	"os"
+
+	"github.com/01-edu/z01"
+)
 
 func main() {
-	if len(os.Args) < 2 {
+	if len(os.Args)!=2{
+		z01.PrintRune('\n')
 		return
 	}
-	inword := false 
-	count := 0
-	for _, arg := range os.Args[1:]{
-		for i := 0 ; i < len(arg) ;i++{
-c := arg[i]
-if c > 32 && c < 126 {
-	if !inword{
-		if count > 0 {
-			os.Stdout.Write([]byte{' '})
+	s := os.Args[1]
+	word:= false
+	first := true
+	for i:=0;i < len(s);i++{
+		if s[i] !=' '&& s[i] !='\t'{
+			if !word && !first{
+				z01.PrintRune(' ')
+				z01.PrintRune(' ')
+				z01.PrintRune(' ')
+			}
+			z01.PrintRune(rune(s[i]))
+			word = true
+			first = false
+		}else{
+			word= false
 		}
-		inword = true 
-		count++
 	}
-	os.Stdout.Write([]byte{c})
-}else{
-	inword = false
-}
-		}
-		inword = false
-	}
+	z01.PrintRune('\n')
 }
