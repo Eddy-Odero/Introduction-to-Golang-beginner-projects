@@ -4,23 +4,21 @@ import "fmt"
 
 func TrimAtoi(s string) int {
 	result := 0
-	isNegative := false
-	signFound := false
-	for _, r := range s {
-		if r == '-' && !signFound {
-			isNegative = true
-			signFound = true
-		} else if r == '+' && !signFound {
-			signFound = true
-		} else if r >= '0' && r <= '9' {
-			digit := int(r - '0')
+	sign := 1
+	digitFound := -1
+	for i, j := range s {
+		if j >= '0' && j <= '9' {
+			if digitFound == -1 {
+				digitFound = i
+			}
+			digit := int(j - '0')
 			result = result*10 + digit
+
+		} else if j == '-' && digitFound == -1 {
+			sign = -1
 		}
 	}
-	if isNegative {
-		return -result
-	}
-	return result
+	return result * sign
 }
 func main() {
 	fmt.Println(TrimAtoi("12345"))

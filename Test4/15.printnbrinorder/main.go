@@ -1,27 +1,27 @@
 package main
 
-import "fmt"
+import( 
+ "github.com/01-edu/z01"
+)
 
 func PrintNbrInOrder(n int) {
-	digits := []int{}
+	if n == 0 {
+		z01.PrintRune('0')
+		return
+	}
+	count := [10]int{}
 	for n > 0 {
-		digits = append(digits, n%10)
+		count[n%10]++
 		n /= 10
 	}
-
-	for i := 0; i < len(digits)-1; i++ {
-		for j := 0; j < len(digits)-i-1; j++ {
-			if digits[j] > digits[j+1] {
-				digits[j], digits[j+1] = digits[j+1], digits[j]
-			}
+	for i := 0; i < 10; i++ {
+		for count[i] > 0 {
+			z01.PrintRune(rune(i) + '0')
+			count[i]--
 		}
 	}
-	result := 0
-	for _, d := range digits {
-		result = result*10 + d
-	}
-	fmt.Print(result)
 }
+
 func main() {
 	PrintNbrInOrder(321)
 	PrintNbrInOrder(0)

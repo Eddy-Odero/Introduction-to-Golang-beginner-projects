@@ -1,87 +1,109 @@
-package main
+package maain
 
-import (
-	"fmt"
-	
-)
+import "fmt"
+
 type TreeNode struct {
 	Left, Right, Parent *TreeNode
-	Data                 string
+	Data                string
 }
 
 func BTreeInsertData(root *TreeNode, data string) *TreeNode {
-if root == nil {
-	return &TreeNode{Data:data}
-}
-if data < root.Data{
-	leftchild := BTreeInsertData(root.Left, data)
-	root.Left = leftchild
-	leftchild.Parent = root
-}else if data > root.Data{
-	rightchild := BTreeInsertData(root.Right,data)
-	root.Right = rightchild
-	rightchild.Parent = root
-}
-return root
-}
-func BTreeApplyInorder(root *TreeNode, f func(...interface{}) (int, error)) {
-if root == nil {
-	return 
-}
-BTreeApplyInorder(root.Left,f)
-f(root.Data)
-BTreeApplyInorder(root.Right,f)
-}
-func BTreeSearchItem(root *TreeNode, elem string) *TreeNode {
-if root == nil {
-	return nil
-}
-if elem == root.Data{
-return root
-}else if elem < root.Data{
-	return BTreeInsertData(root.Left, elem)
-}else{
-	return BTreeInsertData(root.Right, elem)
-}
-
-}
-func BTreeMin(root *TreeNode) *TreeNode {
-if root == nil || root.Left == nil {
+	if root == nil {
+		return &TreeNode{Data: data}
+	}
+	if data < root.Data {
+		left := BTreeInsertData(root.Left, data)
+		root.Left = left
+		left.Parent = root
+	} else if data > root.Data {
+		right := BTreeInsertData(root.Right, data)
+		root.Right = right
+		right.Parent = root
+	}
 	return root
 }
-return BTreeMin(root.Left)
+
+func BTreeSearchItem(root *TreeNode, elem string) *TreeNode {
+	if root == nil {
+		return nil
+	}
+	if elem == root.Data {
+		return root
+	}
+	if elem < root.Data {
+		return BTreeSearchItem(root.Left, elem)
+	}
+	return BTreeSearchItem(root.Right, elem)
 }
+
+func BTreeApplyInorder(root *TreeNode, f func(...interface{}) (int, error)) {
+	if root == nil {
+		return
+	}
+	BTreeApplyInorder(root.Left, f)
+	f(root.Data)
+	BTreeApplyInorder(root.Right, f)
+}
+
+func BTreeMin(root *TreeNode) *TreeNode {
+	if root == nil || root.Left == nil {
+		return root
+	}
+	return BTreeMin(root.Left)
+}
+
 func BTreeDeleteNode(root, node *TreeNode) *TreeNode {
 	if root == nil || node == nil {
 		return root
 	}
-
 	if node.Data < root.Data {
 		root.Left = BTreeDeleteNode(root.Left, node)
+		if root.Left != nil {
+			root.Left.Parent = root
+		}
 	} else if node.Data > root.Data {
 		root.Right = BTreeDeleteNode(root.Right, node)
+		if root.Right != nil {
+			root.Right.Parent = root
+		}
 	} else {
-		
-
-		
 		if root.Left == nil && root.Right == nil {
 			return nil
 		}
 		if root.Left == nil {
-			root.Right.Parent = root.Parent
+			if root.Right != nil {
+				root.Right.Parent = root.Parent
+			}
 			return root.Right
 		}
 		if root.Right == nil {
-			root.Left.Parent = root.Parent
+			if root.Left != nil {
+				root.Left.Parent = root.Parent
+			}
 			return root.Left
 		}
-
 		successor := BTreeMin(root.Right)
 		root.Data = successor.Data
 		root.Right = BTreeDeleteNode(root.Right, successor)
+		if root.Right != nil {
+			root.Right.Parent = root
+		}
 	}
-
 	return root
+}
+
+func BTreeIsBinary(root *TreeNode) bool {
+	return isBST(root, "", "")
+}
+
+func isBST(node *TreeNode, min, max string) bool {
+	if node == nil {
+		return true
+	}
+	if (min != "" && node.Data <= min) || (max != "" && node.Data >= max) {
+		return false
+	}
+	return isBST(node.Left, min, node.Data) && isBST(node.Right, node.Data, max)
 }
 func main() {
 	root := &TreeNode{Data: "4"}
