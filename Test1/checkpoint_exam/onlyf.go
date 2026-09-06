@@ -1,7 +1,21 @@
 package main
 
-import "github.com/01-edu/z01"
+import (
+	"fmt"
+)
+func Gcd(a, b uint) uint {
+if a ==0 || b == 0{
+	return 0
+}
+for b != 0{
+	a,b = b,a%b
+}
+return a
+}
 
 func main() {
-	z01.PrintRune('f')
+	fmt.Println(Gcd(42, 10))
+	fmt.Println(Gcd(42, 12))
+	fmt.Println(Gcd(14, 77))
+	fmt.Println(Gcd(17, 3))
 }
